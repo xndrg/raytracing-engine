@@ -4,8 +4,6 @@
 #include "typedefs.h"
 #include "color.h"
 
-#define HEADER_OFFSET 15
-
 void write_color(FILE *f, const color &pixel)
 {
         double r = pixel.x;
