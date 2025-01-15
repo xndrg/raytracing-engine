@@ -14,16 +14,16 @@ struct vec2
         double length() const;
 };
 
-vec2 operator+(const vec2 &a, const vec2 &b);
-vec2 operator-(const vec2 &a, const vec2 &b);
-vec2 operator*(const vec2 &a, const vec2 &b);
-vec2 operator*(const vec2 &a, double s);
-vec2 operator*(double s, const vec2 &a);
-vec2 operator/(const vec2 &a, const vec2 &b);
-vec2 operator/(const vec2 &a, double s);
-std::ostream &operator<<(std::ostream &out, const vec2 &a);
+vec2 operator+(const vec2& a, const vec2& b);
+vec2 operator-(const vec2& a, const vec2& b);
+vec2 operator*(const vec2& a, const vec2& b);
+vec2 operator*(const vec2& a, double s);
+vec2 operator*(double s, const vec2& a);
+vec2 operator/(const vec2& a, const vec2& b);
+vec2 operator/(const vec2& a, double s);
+std::ostream& operator<<(std::ostream& out, const vec2& a);
 
-double dot(vec2 const &a, vec2 const &b);
+double dot(vec2 const& a, vec2 const& b);
 
 struct vec3
 {
@@ -37,16 +37,16 @@ struct vec3
         double length() const;
 };
 
-vec3 operator+(const vec3 &a, const vec3 &b);
-vec3 operator-(const vec3 &a, const vec3 &b);
-vec3 operator*(const vec3 &a, const vec3 &b);
-vec3 operator*(const vec3 &a, double s);
-vec3 operator*(double s, const vec3 &a);
-vec3 operator/(const vec3 &a, const vec3 &b);
-vec3 operator/(const vec3 &a, double s);
-std::ostream &operator<<(std::ostream &out, const vec3 &a);
+vec3 operator+(const vec3& a, const vec3& b);
+vec3 operator-(const vec3& a, const vec3& b);
+vec3 operator*(const vec3& a, const vec3& b);
+vec3 operator*(const vec3& a, double s);
+vec3 operator*(double s, const vec3& a);
+vec3 operator/(const vec3& a, const vec3& b);
+vec3 operator/(const vec3& a, double s);
+std::ostream& operator<<(std::ostream& out, const vec3& a);
 
-double dot(vec3 const &a, vec3 const &b);
-vec3 cross(vec3 const &a, vec3 const &b);
+double dot(vec3 const& a, vec3 const& b);
+vec3 cross(vec3 const& a, vec3 const& b);
 
 #endif // VEC_H_

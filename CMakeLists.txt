@@ -8,6 +8,7 @@ set(SOURCE_FILES
   src/main.cpp
   src/vec.cpp
   src/color.cpp
+  src/ray.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})

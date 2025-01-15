@@ -4,7 +4,7 @@
 #include "typedefs.h"
 #include "color.h"
 
-void write_color(FILE *f, const color &pixel)
+void write_color(FILE *f, const color& pixel)
 {
         double r = pixel.x;
         double g = pixel.y;
