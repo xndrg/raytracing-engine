@@ -9,9 +9,16 @@
 #include "color.h"
 #include "ansi.h"
 
-#define IMAGE_WIDTH  512
-#define IMAGE_HEIGHT 512
-static const char *file_path = "image.ppm";
+namespace global {
+        static const char *file_path = "image.ppm";
+        
+        constexpr double aspect_ratio = 16.0 / 9.0;
+        constexpr int image_width = 1280;
+        constexpr int image_height = image_width / aspect_ratio;
+
+        constexpr double viewport_height = 2.0;
+        constexpr double viewport_width = viewport_height * aspect_ratio;
+}
 
 FILE *read_entire_file(const char *file_path)
 {
@@ -27,20 +34,20 @@ FILE *read_entire_file(const char *file_path)
 
 int main()
 {
-        FILE *f = read_entire_file(file_path);
-        
-        // Header
-        fprintf(f, "P3\n" STR(IMAGE_WIDTH) " " STR(IMAGE_HEIGHT) "\n255\n");
+        FILE *f = read_entire_file(global::file_path);
 
-        for (int y = 0; y < IMAGE_HEIGHT; y++)
+        // Header
+        fprintf(f, "P3\n%d %d\n255\n", global::image_width, global::image_height);
+
+        for (int y = 0; y < global::image_height; y++)
         {
-                fprintf(stdout, "\rScanlines remaining: %d ", IMAGE_HEIGHT - y);
+                fprintf(stdout, "\rScanlines remaining: %d ", global::image_height - y);
                 fflush(stdout);
-                for (int x = 0; x < IMAGE_WIDTH; x++)
+                for (int x = 0; x < global::image_width; x++)
                 {
-                        double r = (double) x / (IMAGE_WIDTH-1);
+                        double r = (double) x / (global::image_width-1);
                         double g = 0.0;
-                        double b = (double) y / (IMAGE_HEIGHT-1);
+                        double b = (double) y / (global::image_height-1);
                         color pixel_color = color(r, g, b);
 
                         write_color(f, pixel_color);
