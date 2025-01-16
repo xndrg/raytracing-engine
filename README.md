@@ -6,7 +6,7 @@ Simple software renderer using [Raytracing method](https://en.wikipedia.org/wiki
 
 # How It Works
 
-<img src="https://github.com/xndrg/raytracing-engine/blob/main/images/how_it_works.jpg?raw=true" width="400"/>
+<img src="https://github.com/xndrg/raytracing-engine/blob/main/images/how_it_works.jpg?raw=true" width="600"/>
 
 # Get Started
 
