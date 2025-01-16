@@ -12,7 +12,7 @@
 #include "ray.h"
 
 namespace global {
-        static const char *file_path = "image.ppm";
+        static const char *rendered_image_file_path = "image.ppm";
 
         constexpr double aspect_ratio = 16.0 / 9.0;
         constexpr int image_width = 1280;
@@ -22,7 +22,7 @@ namespace global {
         constexpr double viewport_width = viewport_height * ((double) image_width / image_height);
 }
 
-FILE *read_entire_file(const char *file_path)
+FILE *open_file(const char *file_path)
 {
         FILE *f = fopen(file_path, "wb");
         if (!f)
@@ -90,6 +90,7 @@ void render(FILE *f)
         {
                 fprintf(stdout, "\rScanlines remaining: %d ", global::image_height - y);
                 fflush(stdout);
+                
                 for (int x = 0; x < global::image_width; x++)
                 {
                         vec3 pixel_center = pixel_00 + (x*pixel_delta_u) + (y*pixel_delta_v);
@@ -100,12 +101,13 @@ void render(FILE *f)
                         write_color(f, pixel_color);
                 }
         }
+        
         fprintf(stdout, "\r" GREEN "Done.                  \n" RESET);
 }
 
 int main()
 {
-        FILE *f = read_entire_file(global::file_path);
+        FILE *f = open_file(global::rendered_image_file_path);
 
         render(f);
 
