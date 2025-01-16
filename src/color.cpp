@@ -9,7 +9,7 @@ void write_color(FILE *f, const color& pixel)
         double r = pixel.x;
         double g = pixel.y;
         double b = pixel.z;
-        
+
         u8 rbyte = (u8) 255.999*r;
         u8 gbyte = (u8) 255.999*g;
         u8 bbyte = (u8) 255.999*b;

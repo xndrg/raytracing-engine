@@ -5,7 +5,7 @@ Ray::Ray(const vec3 &origin, const vec3 &direction)
         m_origin = origin;
         m_direction = direction;
 }
-        
+
 const vec3& Ray::origin() const
 {
         return m_origin;
