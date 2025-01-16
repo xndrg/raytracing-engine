@@ -12,6 +12,7 @@ struct vec2
         vec2(double x, double y);
         vec2 operator-() const;
         double length() const;
+        vec2 norm() const;
 };
 
 vec2 operator+(const vec2& a, const vec2& b);
@@ -35,6 +36,7 @@ struct vec3
         vec3(double x, double y, double z);
         vec3 operator-() const;
         double length() const;
+        vec3 norm() const;
 };
 
 vec3 operator+(const vec3& a, const vec3& b);

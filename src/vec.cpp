@@ -69,7 +69,10 @@ double dot(vec2 const& a, vec2 const& b)
         return a.x*b.x + a.y*b.y;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
+vec2 vec2::norm() const
+{
+        return *this / this->length();
+}
 
 vec3::vec3()
 {
@@ -144,4 +147,9 @@ double dot(vec3 const& a, vec3 const& b)
 vec3 cross(vec3 const& a, vec3 const& b)
 {
         return vec3(a.y*b.z - a.z*b.y, a.z*b.x - a.x*b.z, a.x*b.y - a.y*b.x);
+}
+
+vec3 vec3::norm() const
+{
+        return *this / this->length();
 }
