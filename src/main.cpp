@@ -18,7 +18,7 @@ namespace global {
         constexpr int image_height = image_width / aspect_ratio;
 
         constexpr double viewport_height = 2.0;
-        constexpr double viewport_width = viewport_height * ((double) image_width / image_width);
+        constexpr double viewport_width = viewport_height * ((double) image_width / image_height);
 }
 
 FILE *read_entire_file(const char *file_path)
@@ -33,15 +33,29 @@ FILE *read_entire_file(const char *file_path)
         return f;
 }
 
+bool hit_sphere(const vec3& center, double radius, const Ray& r)
+{
+        vec3 oc = center - r.origin();
+        double a = dot(r.direction(), r.direction());
+        double b = -2.0 * dot(r.direction(), oc);
+        double c = dot(oc, oc) - radius*radius;
+        double discriminant = b*b - 4*a*c;
+
+        // True if the ray intersects with sphere once (D = 0) or twice (D > 0)
+        return discriminant >= 0;
+}
+
 color ray_color(const Ray& r)
 {
+        if (hit_sphere(vec3(0, 0, -1), 0.5, r))
+        {
+                return color(1.0, 0.0, 0.0);
+        }
+        
         vec3 dir = r.direction().norm();
-
         double a = 0.5*(dir.y + 1.0);
-
-        // Basic lerp
+        // Lerp for sky gradient
         color result = (1.0-a)*color(1.0, 1.0, 1.0) + a*color(0.5, 0.7, 1.0);
-
         return result;
 }
 
