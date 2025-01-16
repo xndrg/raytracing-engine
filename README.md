@@ -2,6 +2,8 @@
 
 Simple software renderer using [Raytracing method](https://en.wikipedia.org/wiki/Ray_tracing_(graphics))
 
+<img src="https://github.com/xndrg/raytracing-engine/blob/main/images/sphere_normal_map.png?raw=true"/>
+
 # Get Started
 
 You can simply compile it using CMake
