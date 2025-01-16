@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
@@ -33,7 +34,7 @@ FILE *read_entire_file(const char *file_path)
         return f;
 }
 
-bool hit_sphere(const vec3& center, double radius, const Ray& r)
+double hit_sphere(const vec3& center, double radius, const Ray& r)
 {
         vec3 oc = center - r.origin();
         double a = dot(r.direction(), r.direction());
@@ -41,15 +42,25 @@ bool hit_sphere(const vec3& center, double radius, const Ray& r)
         double c = dot(oc, oc) - radius*radius;
         double discriminant = b*b - 4*a*c;
 
-        // True if the ray intersects with sphere once (D = 0) or twice (D > 0)
-        return discriminant >= 0;
+        if (discriminant < 0)
+        {
+                return -1.0;
+        }
+        else
+        {
+                return (-b - sqrt(discriminant)) / (2.0*a);
+        }
 }
 
 color ray_color(const Ray& r)
 {
-        if (hit_sphere(vec3(0, 0, -1), 0.5, r))
+        double t = hit_sphere(vec3(0.0, 0.0, -1.0), 0.5, r);
+        if (t > 0.0)
         {
-                return color(1.0, 0.0, 0.0);
+                // Normal vector = intersection point - center of out sphere => normalize it
+                vec3 N = (r.at(t) - vec3(0.0, 0.0, -1.0));
+                // [-1, 1] + 1 => [0, 2] / 2 => [0, 1]
+                return 0.5*color(N.x+1, N.y+1, N.z+1);
         }
         
         vec3 dir = r.direction().norm();
